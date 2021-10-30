@@ -1,42 +1,53 @@
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
-import Login from './Components/login';
-import Signup from './Components/signup';
 import {
+  BrowserRouter as Router,
   Switch,
   Route,
-  useHistory
+  Link,
+  useHistory,
 } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import Login from './Components/login';
+import Signup from './Components/signup';
+
 import Dashboard from './Components/dashboard';
 function App(){
   let history = useHistory();
     return(
-    <div className="App">
-       <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <Button variant="h6" component="div" onClick={()=> history.push('/')}>
-            MERN project
-          </Button>
-          <Button color="inherit" onClick={()=> {history.push('/signup')} }>Signup</Button>
-          <Button color="inherit" onClick={()=> {history.push('/login') }}>Login</Button>
-        </Toolbar>
-      </AppBar>
-    </Box>
+      <>
+      <Navbar bg="dark" expand="lg">
+        <Container>
+          <Navbar.Brand href="#home" style={{color:"white",fontWeight:"bolder"}}>Registeration Form</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="m-auto">
+              <Nav.Link onClick={() => { history.push("/dashboard") }} style={{color:"white",fontWeight:"bolder"}}>Dashboard</Nav.Link>
+              <Nav.Link onClick={() => { history.push("/") }} style={{color:"white",fontWeight:"bolder"}}>Signup</Nav.Link>
+
+              <Nav.Link onClick={() => { history.push("/login") }} style={{color:"white",fontWeight:"bolder"}}>Login</Nav.Link>
+
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+
+
       <Switch>
-        <Route path="/signup">
-          <Signup/>
+        <Route path="/login">
+          <Login />
         </Route>
-      <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
+
+        <Route path="/dashboard">
+          <Dashboard />
+        </Route>
+
+        <Route exact path="/">
+          <Signup />
+        </Route>
+
       </Switch>
-    </div>
+
+    </>
    
   )
   

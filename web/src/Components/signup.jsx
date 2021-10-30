@@ -24,7 +24,13 @@ const validationSchema = yup.object({
   password: yup
   .string('enter string')
   .min(8, 'Password should be of minimum 8 characters')
-  .required('password is required')
+  .required('password is required'),
+  number: yup
+  .number('Enter your Number')
+  // .min(11, 'Number should be of minimum 11 characters length')
+  // .max(20, 'No more then 15')
+  .required('Number is required'),
+
 })
 function Signup() {
   let history = useHistory();
@@ -34,7 +40,8 @@ function Signup() {
       fullName: '',
       email: '',
       password:'',
-      address:''
+      address:'',
+      number:''
     },
     onSubmit: onSubmitFunction
   });
@@ -43,7 +50,9 @@ function Signup() {
       fullName: values.fullName,
       email: values.email,
       password: values.password,
-      address: values.address
+      address: values.address,
+      number: values.number
+
     })
     .then(res=>{
       alert('data Written');
@@ -54,78 +63,98 @@ function Signup() {
     })
   }
   return (
-    <div className="App">
-      <h1>  Sign Up </h1>
-       <form onSubmit={formik.handleSubmit}>
-        <Stack spacing={3}>
-          <TextField
-            
-            color="primary"
-            id="outlined-basic"
-            label="Full Name"
-            variant="outlined"
+    <div style={{ margin: "0 20% 0 20%" }}>
+            <h1 style={{ textAlign: "center", color: "whitesmoke", textDecoration: "5px solid underline", textDecorationColor: "brown" }}>SignUp</h1>
+            <br />
+            <form onSubmit={formik.handleSubmit}>
+                <Stack spacing={2}>
 
-            name="fullName"
-            value={formik.values.fullName}
-            onChange={formik.handleChange}
+                    <TextField
+                        fullWidth
+                        color="primary"
+                        id="outlined-basic"
+                        label="Full Name"
+                        variant="outlined"
 
-            error={formik.touched.fullName && Boolean(formik.errors.fullName)}
-            helperText={formik.touched.fullName && formik.errors.fullName}
-          />
+                        name="fullName"
+                        value={formik.values.fullName}
+                        onChange={formik.handleChange}
 
-          <TextField
-            
-            color="primary"
-            id="outlined-basic"
-            label="Email"
-            variant="outlined"
-            type = "email"
-            name="email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
+                        error={formik.touched.fullName && Boolean(formik.errors.fullName)}
+                        helperText={formik.touched.fullName && formik.errors.fullName}
+                    />
 
-            error={formik.touched.email && Boolean(formik.errors.email)}
-            helperText={formik.touched.email && formik.errors.email}
-          />
+                    <TextField
+                        fullWidth
+                        color="primary"
+                        id="outlined-basic"
+                        label="Address"
+                        variant="outlined"
 
-          <TextField
-            
-            color="primary"
-            type="password"
-            id="filled-basic"
-            label="Password"
-            variant="outlined"
-            name="password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
+                        name="address"
+                        value={formik.values.address}
+                        onChange={formik.handleChange}
 
-            error={formik.touched.password && Boolean(formik.errors.password)}
-            helperText={formik.touched.password && formik.errors.password}
-            >
-            
+                        error={formik.touched.address && Boolean(formik.errors.address)}
+                        helperText={formik.touched.address && formik.errors.address}
+                    />
 
-          </TextField>
-          <TextField
-            
-            color="primary"
-            id="filled-basic"
-            label="Address"
-            variant="outlined"
-            type="address"
+                    <TextField
+                        fullWidth
+                        color="primary"
+                        id="outlined-basic"
+                        label="Number"
+                        variant="outlined"
 
-            name="address"
-            value={formik.values.address}
-            onChange={formik.handleChange}
+                        name="number"
+                        value={formik.values.number}
+                        onChange={formik.handleChange}
 
-            error={formik.touched.address && Boolean(formik.errors.address)}
-            helperText={formik.touched.address && formik.errors.address}
-          />
+                        error={formik.touched.number && Boolean(formik.errors.number)}
+                        helperText={formik.touched.number && formik.errors.number}
+                    />
 
-          <Button  variant="contained" color="primary" type="submit">Sign Up</Button>
-        </Stack>
-      </form>
-      
-    </div>
+                    <TextField
+                        fullWidth
+                        color="primary"
+                        id="outlined-basic"
+                        label="Email"
+                        variant="outlined"
+
+                        name="email"
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+
+                        error={formik.touched.email && Boolean(formik.errors.email)}
+                        helperText={formik.touched.email && formik.errors.email}
+                    />
+
+                    <TextField
+                        fullWidth
+                        color="primary"
+                        id="filled-basic"
+                        label="Password"
+                        variant="outlined"
+                        type="password"
+
+                        name="password"
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+
+                        error={formik.touched.password && Boolean(formik.errors.password)}
+                        helperText={formik.touched.password && formik.errors.password}
+                    />
+                    <br />
+                    <div>
+                        <Button style={{ width: "20%", margin: 'auto' }} variant="contained" color="primary" type="submit">Signup</Button>
+                        <Button style={{ width: "20%", marginLeft:"5px" }} onClick={() => { history.push("/login") }} variant="contained" color="primary">I have an account</Button>
+          
+                    </div>
+                </Stack>
+
+            </form>
+
+        </div>
   );
 }
 

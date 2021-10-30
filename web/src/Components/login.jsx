@@ -49,17 +49,21 @@ function Login(){
     }
 
     return(
-        <div className="login">
-            <h1> Log In</h1>
-       <form onSubmit={formik.handleSubmit}>
-        <Stack spacing={3}>
+        <div style={{ margin: "0 20% 0 20%" }}>
+      <br />
+      <h1 style={{ textAlign: "center", color: "whitesmoke", textDecoration: "5px solid underline", textDecorationColor: "brown" }}>Login</h1>
+      <br />
+
+      <form onSubmit={formik.handleSubmit}>
+        <Stack spacing={2}>
+
           <TextField
-            
+            fullWidth
             color="primary"
             id="outlined-basic"
             label="Email"
             variant="outlined"
-            type = "email"
+
             name="email"
             value={formik.values.email}
             onChange={formik.handleChange}
@@ -69,24 +73,29 @@ function Login(){
           />
 
           <TextField
-            
+            fullWidth
             color="primary"
-            type="password"
             id="filled-basic"
             label="Password"
             variant="outlined"
+            type="password"
+
             name="password"
             value={formik.values.password}
             onChange={formik.handleChange}
 
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
-            />
-
-          <Button  variant="contained" color="primary" type="submit">Log in</Button>
+          /> 
+          <div>
+            <Button style={{ width: "20%",}} variant="contained" color="primary" type="submit">Login</Button>
+            <Button style={{ width: "20%", marginLeft:"5px" }} onClick={() => { history.push("/signup") }} variant="contained" color="primary">I have no account</Button>
+          </div>
         </Stack>
-        </form>
-        </div>
+
+      </form>
+
+    </div>
     )
 }
 

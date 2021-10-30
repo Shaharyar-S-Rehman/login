@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
+// import Divider from '@mui/material/Divider';
 import axios from 'axios';
-import { TextField, Button } from '@mui/material';
+// import { TextField, Button } from '@mui/material';
 import { useFormik } from 'formik';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
+// import Stack from '@mui/material/Stack';
+// import Typography from '@mui/material/Typography';
+// import Paper from '@mui/material/Paper';
 import { makeStyles } from "@material-ui/core/styles";
 import yellow from "@material-ui/core/colors/yellow";
 import * as yup from 'yup';
@@ -102,38 +102,7 @@ function Dashboard() {
                 }
 
             </Box>
-            <Divider />
-            <Box>
-                <form onSubmit={formik.handleSubmit}>
-                    <Stack spacing={3}>
-                        <TextField
-                            multiline
-                            color="primary"
-                            id="outlined-multiline-static"
-                            label="Post"
-                            variant="outlined"
-                            type="text"
-                            name="post"
-                            value={formik.values.post}
-                            onChange={formik.handleChange}
-                            rows={4}
-                            error={formik.touched.post && Boolean(formik.errors.post)}
-                            helperText={formik.touched.post && formik.errors.post}
-                        />
-                        <Button variant="contained" color="primary" type="submit" onClick={()=>{setSubmit(!submit)}}>Post</Button>
-                    </Stack>
-                </form>
-            </Box>
-            <Box>
-                <Typography variant="h4" gutterBottom >
-                    All Users Post
-                </Typography>
-                <Paper className={classes.customBorderRadius} elevation={15}>
-                    <Box p={1}>
-                        <Typography variant="p"> Hello Everyone </Typography>
-                    </Box>
-                </Paper>
-            </Box>
+           
         </div>
     );
 }

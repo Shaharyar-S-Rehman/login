@@ -11,6 +11,7 @@ const USER = mongoose.model('Users',
     email: String,
     password: String,
     address: String,
+    number: String,
     created: {
         type: String,
         default: Date.now
@@ -51,7 +52,8 @@ app.post('/api/v1/signup', (req, res)=>{
                         fullName: req.body.fullName,
                         email: req.body.email,
                         password: req.body.password,
-                        address: req.body.address
+                        address: req.body.address,
+                        number: req.body.number,
                     }
                 );
                 newUser.save(()=>{
@@ -66,17 +68,17 @@ app.post('/api/v1/signup', (req, res)=>{
     
 });
 
-app.post('/api/v1/profile', (req, res)=>{
-    const email = req.body.email;
-    USER.find({email: email},(err, data)=>{
-        if(err){
-            res.send('status 500, error in getting data base')
-        }
-        else{
-            res.send(data)
-        }
-    })
-});
+// app.post('/api/v1/profile', (req, res)=>{
+//     const email = req.body.email;
+//     USER.find({email: email},(err, data)=>{
+//         if(err){
+//             res.send('status 500, error in getting data base')
+//         }
+//         else{
+//             res.send(data)
+//         }
+//     })
+// });
 
 app.post('/api/v1/login', (req, res)=>{
     if(!req.body.email || !req.body.password) {
@@ -105,33 +107,33 @@ app.post('/api/v1/login', (req, res)=>{
     }
 });
 
-app.post('/api/v1/post',(req,res)=>{
-    let Post = req.body.post;
-    let Email = req.body.email;
-    let newPost = new POST(
-        {
-            email: Email,
-            post: Post
-        }
-    )
-    newPost.save(()=>{
-        console.log('data saved, profile has been created')
-        res.send('Post has been created');   
-    })
-})
+// app.post('/api/v1/post',(req,res)=>{
+//     let Post = req.body.post;
+//     let Email = req.body.email;
+//     let newPost = new POST(
+//         {
+//             email: Email,
+//             post: Post
+//         }
+//     )
+//     newPost.save(()=>{
+//         console.log('data saved, profile has been created')
+//         res.send('Post has been created');   
+//     })
+// })
 
-app.get('/api/v1/getpost',(req,res)=>{
-    POST.find({},(err,posts)=>{
-        if(err){
-            res.status(500).send('error occured in getting data')
-        }
-        else{
-            if(posts){
-                res.send(posts)
-            }
-        }
-    })
-})
+// app.get('/api/v1/getpost',(req,res)=>{
+//     POST.find({},(err,posts)=>{
+//         if(err){
+//             res.status(500).send('error occured in getting data')
+//         }
+//         else{
+//             if(posts){
+//                 res.send(posts)
+//             }
+//         }
+//     })
+// })
 app.get("/**", (req, res, next) => {
     // res.sendFile(path.join(__dirname, "./web/build/index.html"))
     res.redirect("/")
